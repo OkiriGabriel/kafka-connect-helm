@@ -1,8 +1,8 @@
-resource "helm_release" "kafka_connector" {
+resource "helm_release" "cp-kafka-connect" {
   name       = "cp-kafka-connect"
   repository = "https://confluentinc.github.io/cp-helm-charts/"
   chart      = "cp-helm-charts"
-  version    = "0.1.0"
+  version    = " 0.6.1"
 
 
   set {
@@ -17,7 +17,7 @@ resource "helm_release" "kafka_connector" {
 
   set {
     name  = "cp-kafka-connect.enabled"
-    value = "true"
+    value = "f"
   }
   set {
     name  = "installCRDs"
@@ -43,7 +43,7 @@ resource "helm_release" "kafka_connector" {
 #     value = "kafka-connect-status"
 #   }
 
-  namespace = "my-confluent-oss"
+  namespace = "cp-kafka-connect"
 
     values = [
     "${data.template_file.cp-helm-charts-values.rendered}",
